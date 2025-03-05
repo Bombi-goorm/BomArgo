@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-server-dep
+  labels:
+    app: notification-server
+spec:
+  revisionHistoryLimit: 2
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notification-server
+  template:
+    metadata:
+      labels:
+        app: notification-server
+    spec:
+      containers:
+      - name: notification-server-container
+        image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/notification:4
+        env:
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: password
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: username
+        - name: DB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: host
+        ports:
+        - containerPort: 8184
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notification-server-service
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: /noti/health
+spec:
+  selector:
+    app: notification-server
+  ports:
+    - protocol: TCP
+      port: 8184
+      targetPort: 8184

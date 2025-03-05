@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core-server-dep
+  labels:
+    app: core-server
+spec:
+  revisionHistoryLimit: 2
+  replicas: 1
+  selector:
+    matchLabels:
+      app: core-server
+  template:
+    metadata:
+      labels:
+        app: core-server
+    spec:
+      nodeSelector:        # nodeSelector should be here, at pod spec level
+        kubernetes.io/arch: amd64
+      containers:
+      - name: core-server-container
+        image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/core:5
+        ports:
+        - containerPort: 8181
+          env:
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: "/secrets/gcp/credentials.json"
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: host
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: port
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: password
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: dbname
+          volumeMounts:
+            - name: gcp-credentials
+              mountPath: /secrets/gcp
+              readOnly: true
+      volumes:
+        - name: gcp-credentials
+          secret:
+            secretName: gcp-credentials
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: core-server-service
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: /core/health
+spec:
+  selector:
+    app: core-server
+  ports:
+    - protocol: TCP
+      port: 8181
+      targetPort: 8181

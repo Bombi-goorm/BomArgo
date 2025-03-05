@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-server-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-server
+  template:
+    metadata:
+      labels:
+        app: auth-server
+    spec:
+      nodeSelector:
+        nodegroup: auth-nodes  # This is fine for specifying the node group
+        kubernetes.io/arch: amd64  # Ensure you're targeting the correct architecture
+      containers:
+        - name: auth-server
+          image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/auth:10
+          ports:
+            - containerPort: 8180
+          env:
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: "/secrets/gcp/credentials.json"
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: host
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: port
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: password
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: dbname
+          volumeMounts:
+            - name: gcp-credentials
+              mountPath: /secrets/gcp
+              readOnly: true
+      volumes:
+        - name: gcp-credentials
+          secret:
+            secretName: gcp-credentials
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-server-service
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: /auth/health
+spec:
+  selector:
+    app: auth-server
+  ports:
+    - protocol: TCP
+      port: 8180  # External port
+      targetPort: 8180  # Internal container port
