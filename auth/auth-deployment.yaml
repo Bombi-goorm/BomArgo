@@ -13,8 +13,7 @@ spec:
         app: auth-server
     spec:
       nodeSelector:
-        nodegroup: auth-nodes  # This is fine for specifying the node group
-        kubernetes.io/arch: amd64  # Ensure you're targeting the correct architecture
+        kubernetes.io/arch: amd64
       containers:
         - name: auth-server
           image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/auth:9
@@ -23,11 +22,11 @@ spec:
           env:
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: "/secrets/gcp/credentials.json"
-            - name: DB_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: db-credentials
-                  key: host
+            # - name: DB_HOST
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: db-credentials
+            #       key: host
             - name: DB_PORT
               valueFrom:
                 secretKeyRef:
@@ -69,5 +68,5 @@ spec:
     app: auth-server
   ports:
     - protocol: TCP
-      port: 8180  # External port
-      targetPort: 8180  # Internal container port
+      port: 8180
+      targetPort: 8180
