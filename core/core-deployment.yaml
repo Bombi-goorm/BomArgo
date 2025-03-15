@@ -19,45 +19,166 @@ spec:
         kubernetes.io/arch: amd64
       containers:
       - name: core-server-container
-        image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/core:5
+        image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/core:6
         ports:
         - containerPort: 8181
         env:
-        - name: GOOGLE_APPLICATION_CREDENTIALS
-          value: "/secrets/gcp/credentials.json"
-        # - name: DB_HOST
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: db-credentials
-        #       key: host
-        - name: DB_PORT
+        - name: CORE_PORT
+          value: "8080"
+        - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+          value: "org.mariadb.jdbc.Driver"
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:mariadb://bomnet.cbq4a82eqmkx.ap-northeast-2.rds.amazonaws.com:3306/bomnet_db"
+        - name: spring.datasource.username
+          value: "admin"
+          # valueFrom:
+          #   secretKeyRef:
+          #     name: core-app-config
+          #     key: spring.datasource.username
+        - name: spring.datasource.password
           valueFrom:
             secretKeyRef:
-              name: db-credentials
-              key: port
-        - name: DB_USER
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: SPRING_DATA_REDIS_HOST
+          value: "localhost"
+        - name: SPRING_DATA_REDIS_PORT
+          value: "6379"
+        - name: JWT_SECRET
           valueFrom:
             secretKeyRef:
-              name: db-credentials
-              key: username
-        - name: DB_PASSWORD
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: naver.client.id
           valueFrom:
             secretKeyRef:
-              name: db-credentials
-              key: password
-        - name: DB_NAME
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: naver.client.secret
           valueFrom:
             secretKeyRef:
-              name: db-credentials
-              key: dbname
-        volumeMounts:
-        - name: gcp-credentials
-          mountPath: /secrets/gcp
-          readOnly: true
-      volumes:
-      - name: gcp-credentials
-        secret:
-          secretName: gcp-credentials
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: naver.news.api.url
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: api.soil.servicekey
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: spring.cloud.gcp.project.id
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: spring.cloud.gcp.storage.credentials.location.type
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: spring.cloud.gcp.storage.credentials.project.id
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: spring.cloud.gcp.storage.credentials.private.key.id
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: spring.cloud.gcp.storage.credentials.private.key
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: spring.cloud.gcp.storage.credentials.client.email
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: spring.cloud.gcp.storage.credentials.client.id
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: spring.cloud.gcp.storage.credentials.auth.uri
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: spring.cloud.gcp.storage.credentials.token.uri
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: spring.cloud.gcp.storage.credentials.auth.provider.x509.cert.url
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: spring.cloud.gcp.storage.credentials.client.x509.cert.url
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: spring.cloud.gcp.storage.credentials.universe.domain
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: spring.cloud.gcp.bigquery.credentials.type
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: spring.cloud.gcp.bigquery.credentials.project.id
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: spring.cloud.gcp.bigquery.credentials.private.key.id
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: spring.cloud.gcp.bigquery.credentials.private.key
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: spring.cloud.gcp.bigquery.credentials.client.email
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: spring.cloud.gcp.bigquery.credentials.client.id
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: spring.cloud.gcp.bigquery.credentials.auth.uri
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: spring.cloud.gcp.bigquery.credentials.tokem.uri
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: spring.cloud.gcp.bigquery.credentials.auth.provider.x509.cert.url
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
+        - name: spring.cloud.gcp.bigquery.credentials.client.x509.cert.url
+          valueFrom:
+            secretKeyRef:
+              name: core-app-config
+              key: MY_CORE_SECRET_KEY
 ---
 apiVersion: v1
 kind: Service

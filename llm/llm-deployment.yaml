@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: llm-server
-        image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/llm:44
+        image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/llm:1
         ports:
         - containerPort: 8182
         env:                         
@@ -25,26 +25,66 @@ spec:
         #     secretKeyRef:
         #       name: db-credentials
         #       key: host
-        - name: DB_PORT
+        # - name: DB_PORT
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: db-credentials
+        #       key: port
+        # - name: DB_USER
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: db-credentials
+        #       key: username
+        # - name: DB_PASSWORD
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: db-credentials
+        #       key: password
+        # - name: DB_NAME
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: db-credentials
+        #       key: dbname
+        - name: OPEN_API_KEY
           valueFrom:
             secretKeyRef:
-              name: db-credentials
-              key: port
-        - name: DB_USER
+              name: llm-app-config
+              key: MY_LLM_SECRET_KEY
+        - name: GOOGLE_APPLICATION_CREDENTIALS
           valueFrom:
             secretKeyRef:
-              name: db-credentials
-              key: username
-        - name: DB_PASSWORD
+              name: llm-app-config
+              key: MY_LLM_SECRET_KEY  
+        - name: GCP_PROEJECT_ID
           valueFrom:
             secretKeyRef:
-              name: db-credentials
-              key: password
-        - name: DB_NAME
+              name: llm-app-config
+              key: MY_LLM_SECRET_KEY            
+        - name: TABLE_ID
           valueFrom:
             secretKeyRef:
-              name: db-credentials
-              key: dbname
+              name: llm-app-config
+              key: MY_LLM_SECRET_KEY
+        - name: AUTH_SERVER_URL
+          valueFrom:
+            secretKeyRef:
+              name: llm-app-config
+              key: MY_LLM_SECRET_KEY
+        - name: JWT_PUBLIC_KEY_PATH
+          valueFrom:
+            secretKeyRef:
+              name: llm-app-config
+              key: MY_LLM_SECRET_KEY
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: llm-app-config
+              key: MY_LLM_SECRET_KEY
+        - name: JWT_ALGORITHM
+          valueFrom:
+            secretKeyRef:
+              name: llm-app-config
+              key: MY_LLM_SECRET_KEY
         volumeMounts:
         - name: gcp-credentials
           mountPath: /secrets/gcp

@@ -16,45 +16,110 @@ spec:
         kubernetes.io/arch: amd64
       containers:
         - name: auth-server
-          image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/auth:9
+          image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/auth:10
           ports:
             - containerPort: 8180
           env:
-            - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: "/secrets/gcp/credentials.json"
-            # - name: DB_HOST
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: db-credentials
-            #       key: host
-            - name: DB_PORT
+            - name: spring.profiles.active
               valueFrom:
                 secretKeyRef:
-                  name: db-credentials
-                  key: port
-            - name: DB_USER
+                  name: spring-app-config
+                  key: MY_AUTH_SECRET_KEY
+            - name: spring.datasource.url
               valueFrom:
                 secretKeyRef:
-                  name: db-credentials
-                  key: username
-            - name: DB_PASSWORD
+                  name: spring-app-config
+                  key: MY_AUTH_SECRET_KEY
+            - name: spring.datasource.username
               valueFrom:
                 secretKeyRef:
-                  name: db-credentials
-                  key: password
-            - name: DB_NAME
+                  name: spring-app-config
+                  key: MY_AUTH_SECRET_KEY
+            - name: spring.datasource.password
               valueFrom:
                 secretKeyRef:
-                  name: db-credentials
-                  key: dbname
-          volumeMounts:
-            - name: gcp-credentials
-              mountPath: /secrets/gcp
-              readOnly: true
-      volumes:
-        - name: gcp-credentials
-          secret:
-            secretName: gcp-credentials
+                  name: spring-app-config
+                  key: MY_AUTH_SECRET_KEY
+            - name: spring.security.oauth2.client.registration.kakao.client-id
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-config
+                  key: MY_AUTH_SECRET_KEY
+            - name: spring.security.oauth2.client.registration.kakao.client-secret
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-config
+                  key: MY_AUTH_SECRET_KEY
+            - name: spring.security.oauth2.client.registration.kakao.redirect-uri
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-config
+                  key: MY_AUTH_SECRET_KEY
+            - name: spring.security.oauth2.client.registration.kakao.authorization-grant-type
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-config
+                  key: MY_AUTH_SECRET_KEY
+            - name: spring.security.oauth2.client.registration.kakao.scope
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-config
+                  key: MY_AUTH_SECRET_KEY
+            - name: spring.security.oauth2.provider.kakao.authorization-uri
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-config
+                  key: MY_AUTH_SECRET_KEY
+            - name: spring.security.oauth2.provider.kakao.token-uri
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-config
+                  key: MY_AUTH_SECRET_KEY
+            - name: spring.security.oauth2.provider.kakao.user-info-uri
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-config
+                  key: MY_AUTH_SECRET_KEY
+            - name: spring.security.oauth2.provider.kakao.user-name-attribute
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-config
+                  key: MY_AUTH_SECRET_KEY
+            - name: spring.data.redis.host
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-config
+                  key: MY_AUTH_SECRET_KEY
+            - name: spring.data.redis.port
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-config
+                  key: MY_AUTH_SECRET_KEY
+            - name: spring.jpa.hibernate.ddl-auto
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-config
+                  key: MY_AUTH_SECRET_KEY
+            - name: spring.server.port
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-config
+                  key: MY_AUTH_SECRET_KEY
+            - name: jwt.secret
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-config
+                  key: MY_AUTH_SECRET_KEY
+      #       - name: GOOGLE_APPLICATION_CREDENTIALS
+      #         value: "/secrets/gcp/credentials.json"
+      #     volumeMounts:
+      #       - name: gcp-credentials
+      #         mountPath: /secrets/gcp
+      #         readOnly: true
+      # volumes:
+      #   - name: gcp-credentials
+      #     secret:
+      #       secretName: gcp-credentials
 
 ---
 apiVersion: v1
