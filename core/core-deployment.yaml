@@ -102,7 +102,9 @@ spec:
           valueFrom:
             secretKeyRef:
               name: core-app-config
-              key: SOIL_API_KEY              
+              key: SOIL_API_KEY     
+        - name: CORE_PORT
+          value: "8181"        
 
 ---
 apiVersion: v1
