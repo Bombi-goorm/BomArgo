@@ -27,80 +27,77 @@ spec:
           valueFrom:
             secretKeyRef:
               name: core-app-config
-              key: MY_CORE_SECRET_KEY
+              key: DB_HOST
         - name: DB_PORT
           valueFrom:
             secretKeyRef:
               name: core-app-config
-              key: MY_CORE_SECRET_KEY 
+              key: DB_PORT
         - name: DB_NAME
           valueFrom:
             secretKeyRef:
               name: core-app-config
-              key: MY_CORE_SECRET_KEY            
+              key: DB_NAME
         - name: DB_USER
           valueFrom:
             secretKeyRef:
               name: core-app-config
-              key: MY_CORE_SECRET_KEY  
+              key: DB_USER
         - name: DB_PASS
           valueFrom:
             secretKeyRef:
               name: core-app-config
-              key: MY_CORE_SECRET_KEY
+              key: DB_PASS
         - name: REDIS_HOST
           valueFrom:
             secretKeyRef:
               name: core-app-config
-              key: MY_CORE_SECRET_KEY
+              key: REDIS_HOST
         - name: REDIS_PORT
           valueFrom:
             secretKeyRef:
               name: core-app-config
-              key: MY_CORE_SECRET_KEY
+              key: REDIS_PORT
         - name: JWT_SECRET
           valueFrom:
             secretKeyRef:
               name: core-app-config
-              key: MY_CORE_SECRET_KEY
+              key: JWT_SECRET
         - name: NAVER_ID
           valueFrom:
             secretKeyRef:
               name: core-app-config
-              key: MY_CORE_SECRET_KEY
+              key: NAVER_ID
         - name: NAVER_SECRET
           valueFrom:
             secretKeyRef:
               name: core-app-config
-              key: MY_CORE_SECRET_KEY
+              key: NAVER_SECRET
         - name: NAVER_NEWS_URL
           valueFrom:
             secretKeyRef:
               name: core-app-config
-              key: MY_CORE_SECRET_KEY
+              key: NAVER_NEWS_URL
         - name: GCP_PROJECT_ID
           valueFrom:
             secretKeyRef:
               name: core-app-config
-              key: MY_CORE_SECRET_KEY
+              key: GCP_PROJECT_ID
         - name: GCS_CREDENTIAL
           valueFrom:
             secretKeyRef:
               name: core-app-config
-              key: MY_CORE_SECRET_KEY
+              key: GCS_CREDENTIAL
         - name: BIGQUERY_CREDENTIAL
           valueFrom:
             secretKeyRef:
               name: core-app-config
-              key: MY_CORE_SECRET_KEY
+              key: BIGQUERY_CREDENTIAL
         - name: AUTH_URL
           valueFrom:
             secretKeyRef:
               name: core-app-config
-              key: MY_CORE_SECRET_KEY
-        - name: CORE_PORT
-          value: "8181"
-
+              key: AUTH_URL
 
 ---
 apiVersion: v1
