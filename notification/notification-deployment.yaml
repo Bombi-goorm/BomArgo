@@ -25,59 +25,62 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: noti-app-config
-                key: MY_NOTI_SECRET_KEY
+                key: DB_HOST
           - name: DB_NAME
             valueFrom:
               secretKeyRef:
                 name: noti-app-config
-                key: MY_NOTI_SECRET_KEY
+                key: DB_NAME
           - name: DB_PORT
             valueFrom:
               secretKeyRef:
                 name: noti-app-config
-                key: MY_NOTI_SECRET_KEY
+                key: DB_PORT
           - name: DB_USER
             valueFrom:
               secretKeyRef:
                 name: noti-app-config
-                key: MY_NOTI_SECRET_KEY
+                key: DB_USER
           - name: DB_PASS
             valueFrom:
               secretKeyRef:
                 name: noti-app-config
-                key: MY_NOTI_SECRET_KEY
+                key: DB_PASS
           - name: REDIS_HOST
             valueFrom:
               secretKeyRef:
                 name: noti-app-config
-                key: MY_NOTI_SECRET_KEY
+                key: REDIS_HOST
           - name: REDIS_PORT
             valueFrom:
               secretKeyRef:
                 name: noti-app-config
-                key: MY_NOTI_SECRET_KEY
+                key: REDIS_PORT
           - name: NOTI_PORT
-            value: "8184"
+            valueFrom:
+              secretKeyRef:
+                name: noti-app-config
+                key: NOTI_PORT
           - name: DDL_TYPE
             valueFrom:
               secretKeyRef:
                 name: noti-app-config
-                key: MY_NOTI_SECRET_KEY               
+                key: DDL_TYPE
           - name: PROJECT_ID
             valueFrom:
               secretKeyRef:
                 name: noti-app-config
-                key: MY_NOTI_SECRET_KEY
+                key: PROJECT_ID
           - name: PRICE_SUBSCRIPTION_ID
             valueFrom:
               secretKeyRef:
                 name: noti-app-config
-                key: MY_NOTI_SECRET_KEY
+                key: PRICE_SUBSCRIPTION_ID
           - name: WEATHER_SUBSCRIPTION_ID
             valueFrom:
               secretKeyRef:
                 name: noti-app-config
-                key: MY_NOTI_SECRET_KEY
+                key: WEATHER_SUBSCRIPTION_ID
 
 ---
 apiVersion: v1
