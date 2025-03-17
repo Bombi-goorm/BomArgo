@@ -14,31 +14,31 @@ spec:
     spec:
       containers:
       - name: llm-server
-        image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/llm:3
+        image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/llm:2
         ports:
         - containerPort: 8182
         env:          
-        - name: DB_HOST
+        - name: DATABASE_HOST
           valueFrom:
             secretKeyRef:
               name: llm-app-config
               key: DB_HOST
-        - name: DB_PORT
+        - name: DATABASE_PORT
           valueFrom:
             secretKeyRef:
               name: llm-app-config
               key: DB_PORT
-        - name: DB_NAME
+        - name: DATABASE_NAME
           valueFrom:
             secretKeyRef:
               name: llm-app-config
               key: DB_NAME
-        - name: DB_USER
+        - name: DATABASE_USER
           valueFrom:
             secretKeyRef:
               name: llm-app-config
               key: DB_USER
-        - name: DB_PASS
+        - name: DATABASE_PASSWORD
           valueFrom:
             secretKeyRef:
               name: llm-app-config
@@ -68,7 +68,7 @@ spec:
             secretKeyRef:
               name: llm-app-config
               key: JWT_ALGORITHM
-        - name: OPEN_API_KEY
+        - name: OPENAI_API_KEY
           valueFrom:
             secretKeyRef:
               name: llm-app-config
@@ -88,18 +88,3 @@ spec:
             secretKeyRef:
               name: llm-app-config
               key: AUTH_SERVER_URL
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: llm-server-service
-  annotations:
-    alb.ingress.kubernetes.io/healthcheck-path: /llm/base/health
-spec:
-  selector:
-    app: llm-server
-  ports:
-  - protocol: TCP
-    port: 8182
-    targetPort: 8182
