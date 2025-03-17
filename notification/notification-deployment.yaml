@@ -81,7 +81,21 @@ spec:
               secretKeyRef:
                 name: noti-app-config
                 key: WEATHER_SUBSCRIPTION_ID
-
+          - name: VAPID_PUBLIC
+            valueFrom:
+              secretKeyRef:
+                name: noti-app-config
+                key: VAPID_PUBLIC            
+          - name: VAPID_PRIVATE
+            valueFrom:
+              secretKeyRef:
+                name: noti-app-config
+                key: VAPID_PRIVATE
+          - name: VAPID_SUB
+            valueFrom:
+              secretKeyRef:
+                name: noti-app-config
+                key: VAPID_SUB
 ---
 apiVersion: v1
 kind: Service
