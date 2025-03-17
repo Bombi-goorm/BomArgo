@@ -91,11 +91,11 @@ spec:
               secretKeyRef:
                 name: noti-app-config
                 key: VAPID_PRIVATE
-          - name: VAPID_SUBJECT
+          - name: VAPID_SUB
             valueFrom:
               secretKeyRef:
                 name: noti-app-config
-                key: VAPID_SUBJECT
+                key: VAPID_SUB
 ---
 apiVersion: v1
 kind: Service
