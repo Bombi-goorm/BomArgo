@@ -22,82 +22,73 @@ spec:
           valueFrom:
             secretKeyRef:
               name: llm-app-config
-              key: MY_LLM_SECRET_KEY
+              key: DB_HOST
         - name: DB_PORT
           valueFrom:
             secretKeyRef:
               name: llm-app-config
-              key: MY_LLM_SECRET_KEY
+              key: DB_PORT
         - name: DB_NAME
           valueFrom:
             secretKeyRef:
               name: llm-app-config
-              key: MY_LLM_SECRET_KEY
+              key: DB_NAME
         - name: DB_USER
           valueFrom:
             secretKeyRef:
               name: llm-app-config
-              key: MY_LLM_SECRET_KEY
+              key: DB_USER
         - name: DB_PASS
           valueFrom:
             secretKeyRef:
               name: llm-app-config
-              key: MY_LLM_SECRET_KEY
+              key: DB_PASS
         - name: GCP_PROJECT_ID
           valueFrom:
             secretKeyRef:
               name: llm-app-config
-              key: MY_LLM_SECRET_KEY
+              key: GCP_PROJECT_ID
         - name: GCS_CREDENTIAL
           valueFrom:
             secretKeyRef:
               name: llm-app-config
-              key: MY_LLM_SECRET_KEY
+              key: GCS_CREDENTIAL
         - name: GOOGLE_APPLICATION_CREDENTIALS
           valueFrom:
             secretKeyRef:
               name: llm-app-config
-              key: MY_LLM_SECRET_KEY
-        - name: REDIS_PORT
-          valueFrom:
-            secretKeyRef:
-              name: llm-app-config
-              key: MY_LLM_SECRET_KEY
-        - name: REDIS_HOST
-          valueFrom:
-            secretKeyRef:
-              name: llm-app-config
-              key: MY_LLM_SECRET_KEY
+              key: GOOGLE_APPLICATION_CREDENTIALS
         - name: JWT_SECRET
           valueFrom:
             secretKeyRef:
               name: llm-app-config
-              key: MY_LLM_SECRET_KEY
+              key: JWT_SECRET
         - name: JWT_ALGORITHM
           valueFrom:
             secretKeyRef:
               name: llm-app-config
-              key: MY_LLM_SECRET_KEY
+              key: JWT_ALGORITHM
         - name: OPEN_API_KEY
           valueFrom:
             secretKeyRef:
               name: llm-app-config
-              key: MY_LLM_SECRET_KEY
+              key: OPEN_API_KEY
         - name: DATASET_ID
           valueFrom:
             secretKeyRef:
               name: llm-app-config
-              key: MY_LLM_SECRET_KEY
+              key: DATASET_ID
         - name: TABLE_ID
           valueFrom:
             secretKeyRef:
               name: llm-app-config
-              key: MY_LLM_SECRET_KEY
+              key: TABLE_ID
         - name: AUTH_SERVER_URL
           valueFrom:
             secretKeyRef:
               name: llm-app-config
-              key: MY_LLM_SECRET_KEY
+              key: AUTH_SERVER_URL
+
 ---
 apiVersion: v1
 kind: Service
