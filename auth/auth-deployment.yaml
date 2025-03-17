@@ -111,10 +111,7 @@ spec:
                   name: spring-app-config
                   key: MY_AUTH_SECRET_KEY              
             - name: REDIS_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: spring-app-config
-                  key: MY_AUTH_SECRET_KEY
+              value: "6379"
             - name: REDIS_HOST
               valueFrom:
                 secretKeyRef:
