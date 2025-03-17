@@ -20,120 +20,105 @@ spec:
           ports:
             - containerPort: 8180
           env:
-            # - name: spring.profiles.active
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: spring-app-config
-            #       key: MY_AUTH_SECRET_KEY
             - name: DB_HOST
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
-                  key: MY_AUTH_SECRET_KEY
+                  key: DB_HOST
             - name: DB_PORT
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
-                  key: MY_AUTH_SECRET_KEY
+                  key: DB_PORT
             - name: DB_NAME
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
-                  key: MY_AUTH_SECRET_KEY
+                  key: DB_NAME
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
-                  key: MY_AUTH_SECRET_KEY
+                  key: DB_USER
             - name: DB_PASS
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
-                  key: MY_AUTH_SECRET_KEY
+                  key: DB_PASS
             - name: GCP_PROJECT_ID
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
-                  key: MY_AUTH_SECRET_KEY
+                  key: GCP_PROJECT_ID
             - name: GCS_CREDENTIAL
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
-                  key: MY_AUTH_SECRET_KEY
+                  key: GCS_CREDENTIAL
             - name: BIGQUERY_CREDENTIAL
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
-                  key: MY_AUTH_SECRET_KEY
+                  key: BIGQUERY_CREDENTIAL
             - name: KAKAO_CLIENT_NAME
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
-                  key: MY_AUTH_SECRET_KEY
+                  key: KAKAO_CLIENT_NAME
             - name: KAKAO_CLIENT_ID
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
-                  key: MY_AUTH_SECRET_KEY
+                  key: KAKAO_CLIENT_ID
             - name: KAKAO_AUTH_METHOD
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
-                  key: MY_AUTH_SECRET_KEY
+                  key: KAKAO_AUTH_METHOD
             - name: KAKAO_REDIRECT_ID
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
-                  key: MY_AUTH_SECRET_KEY
+                  key: KAKAO_REDIRECT_ID
             - name: KAKAO_SCOPE
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
-                  key: MY_AUTH_SECRET_KEY
+                  key: KAKAO_SCOPE
             - name: KAKAO_AUTH_URI
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
-                  key: MY_AUTH_SECRET_KEY
+                  key: KAKAO_AUTH_URI
             - name: KAKAO_TOKEN_URI
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
-                  key: MY_AUTH_SECRET_KEY
+                  key: KAKAO_TOKEN_URI
             - name: KAKAO_ATTRIBUTE
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
-                  key: MY_AUTH_SECRET_KEY
+                  key: KAKAO_ATTRIBUTE
             - name: DDL_TYPE
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
-                  key: MY_AUTH_SECRET_KEY              
+                  key: DDL_TYPE
             - name: REDIS_PORT
-              value: "6379"
+              value: "6379"  # 하드코딩된 값 사용
             - name: REDIS_HOST
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
-                  key: MY_AUTH_SECRET_KEY
+                  key: REDIS_HOST
             - name: AUTH_PORT
-              value: "8180"
+              value: "8180"  # 하드코딩된 값 사용
             - name: JWT_SECRET
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
-                  key: MY_AUTH_SECRET_KEY
-      #       - name: GOOGLE_APPLICATION_CREDENTIALS
-      #         value: "/secrets/gcp/credentials.json"
-      #     volumeMounts:
-      #       - name: gcp-credentials
-      #         mountPath: /secrets/gcp
-      #         readOnly: true
-      # volumes:
-      #   - name: gcp-credentials
-      #     secret:
-      #       secretName: gcp-credentials
+                  key: JWT_SECRET
 
 ---
 apiVersion: v1
