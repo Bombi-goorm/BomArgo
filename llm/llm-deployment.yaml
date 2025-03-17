@@ -94,7 +94,7 @@ kind: Service
 metadata:
   name: llm-server-service
   annotations:
-    alb.ingress.kubernetes.io/healthcheck-path: /llm/health
+    alb.ingress.kubernetes.io/healthcheck-path: /llm/health/ping
 spec:
   selector:
     app: llm-server
