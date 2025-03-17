@@ -98,6 +98,8 @@ spec:
             secretKeyRef:
               name: core-app-config
               key: AUTH_URL
+        - name: CORE_PORT
+          value: "8181"
 
 ---
 apiVersion: v1
