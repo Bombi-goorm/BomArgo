@@ -93,6 +93,11 @@ spec:
                 key: VAPID_PRIVATE
           - name: VAPID_SUB
             value: "mailto:your-email@example.com"
+          - name: GOOGLE_APPLICATION_CREDENTIALS
+            valueFrom:
+              secretKeyRef:
+                name: noti-app-config
+                key: GOOGLE_APPLICATION_CREDENTIALS        
 ---
 apiVersion: v1
 kind: Service
