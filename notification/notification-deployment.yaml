@@ -92,10 +92,7 @@ spec:
                 name: noti-app-config
                 key: VAPID_PRIVATE
           - name: VAPID_SUB
-            valueFrom:
-              secretKeyRef:
-                name: noti-app-config
-                key: VAPID_SUB
+            value: "mailto:your-email@example.com"
 ---
 apiVersion: v1
 kind: Service
