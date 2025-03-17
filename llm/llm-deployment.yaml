@@ -14,38 +14,41 @@ spec:
     spec:
       containers:
       - name: llm-server
-        image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/llm:1
+        image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/llm:2
         ports:
         - containerPort: 8182
-        env:                         
-        - name: GOOGLE_APPLICATION_CREDENTIALS
-          value: "/secrets/gcp/credentials.json"
-        # - name: DB_HOST
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: db-credentials
-        #       key: host
-        # - name: DB_PORT
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: db-credentials
-        #       key: port
-        # - name: DB_USER
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: db-credentials
-        #       key: username
-        # - name: DB_PASSWORD
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: db-credentials
-        #       key: password
-        # - name: DB_NAME
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: db-credentials
-        #       key: dbname
-        - name: OPEN_API_KEY
+        env:          
+        - name: DB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: llm-app-config
+              key: MY_LLM_SECRET_KEY
+        - name: DB_PORT
+          valueFrom:
+            secretKeyRef:
+              name: llm-app-config
+              key: MY_LLM_SECRET_KEY
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: llm-app-config
+              key: MY_LLM_SECRET_KEY
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: llm-app-config
+              key: MY_LLM_SECRET_KEY
+        - name: DB_PASS
+          valueFrom:
+            secretKeyRef:
+              name: llm-app-config
+              key: MY_LLM_SECRET_KEY
+        - name: GCP_PROJECT_ID
+          valueFrom:
+            secretKeyRef:
+              name: llm-app-config
+              key: MY_LLM_SECRET_KEY
+        - name: GCS_CREDENTIAL
           valueFrom:
             secretKeyRef:
               name: llm-app-config
@@ -54,23 +57,13 @@ spec:
           valueFrom:
             secretKeyRef:
               name: llm-app-config
-              key: MY_LLM_SECRET_KEY  
-        - name: GCP_PROEJECT_ID
-          valueFrom:
-            secretKeyRef:
-              name: llm-app-config
-              key: MY_LLM_SECRET_KEY            
-        - name: TABLE_ID
+              key: MY_LLM_SECRET_KEY
+        - name: REDIS_PORT
           valueFrom:
             secretKeyRef:
               name: llm-app-config
               key: MY_LLM_SECRET_KEY
-        - name: AUTH_SERVER_URL
-          valueFrom:
-            secretKeyRef:
-              name: llm-app-config
-              key: MY_LLM_SECRET_KEY
-        - name: JWT_PUBLIC_KEY_PATH
+        - name: REDIS_HOST
           valueFrom:
             secretKeyRef:
               name: llm-app-config
@@ -85,18 +78,26 @@ spec:
             secretKeyRef:
               name: llm-app-config
               key: MY_LLM_SECRET_KEY
-        volumeMounts:
-        - name: gcp-credentials
-          mountPath: /secrets/gcp
-          readOnly: true
-      nodeSelector:
-        kubernetes.io/arch: amd64
-      volumes:
-      - name: gcp-credentials
-        secret:
-          secretName: gcp-credentials
-
-
+        - name: OPEN_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: llm-app-config
+              key: MY_LLM_SECRET_KEY
+        - name: DATASET_ID
+          valueFrom:
+            secretKeyRef:
+              name: llm-app-config
+              key: MY_LLM_SECRET_KEY
+        - name: TABLE_ID
+          valueFrom:
+            secretKeyRef:
+              name: llm-app-config
+              key: MY_LLM_SECRET_KEY
+        - name: AUTH_SERVER_URL
+          valueFrom:
+            secretKeyRef:
+              name: llm-app-config
+              key: MY_LLM_SECRET_KEY
 ---
 apiVersion: v1
 kind: Service

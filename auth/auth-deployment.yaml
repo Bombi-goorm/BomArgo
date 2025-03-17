@@ -16,96 +16,116 @@ spec:
         kubernetes.io/arch: amd64
       containers:
         - name: auth-server
-          image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/auth:10
+          image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/auth:11
           ports:
             - containerPort: 8180
           env:
-            - name: spring.profiles.active
+            # - name: spring.profiles.active
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: spring-app-config
+            #       key: MY_AUTH_SECRET_KEY
+            - name: DB_HOST
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
                   key: MY_AUTH_SECRET_KEY
-            - name: spring.datasource.url
+            - name: DB_PORT
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
                   key: MY_AUTH_SECRET_KEY
-            - name: spring.datasource.username
+            - name: DB_NAME
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
                   key: MY_AUTH_SECRET_KEY
-            - name: spring.datasource.password
+            - name: DB_USER
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
                   key: MY_AUTH_SECRET_KEY
-            - name: spring.security.oauth2.client.registration.kakao.client-id
+            - name: DB_PASS
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
                   key: MY_AUTH_SECRET_KEY
-            - name: spring.security.oauth2.client.registration.kakao.client-secret
+            - name: GCP_PROJECT_ID
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
                   key: MY_AUTH_SECRET_KEY
-            - name: spring.security.oauth2.client.registration.kakao.redirect-uri
+            - name: GCS_CREDENTIAL
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
                   key: MY_AUTH_SECRET_KEY
-            - name: spring.security.oauth2.client.registration.kakao.authorization-grant-type
+            - name: BIGQUERY_CREDENTIAL
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
                   key: MY_AUTH_SECRET_KEY
-            - name: spring.security.oauth2.client.registration.kakao.scope
+            - name: KAKAO_CLIENT_NAME
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
                   key: MY_AUTH_SECRET_KEY
-            - name: spring.security.oauth2.provider.kakao.authorization-uri
+            - name: KAKAO_CLIENT_ID
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
                   key: MY_AUTH_SECRET_KEY
-            - name: spring.security.oauth2.provider.kakao.token-uri
+            - name: KAKAO_AUTH_METHOD
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
                   key: MY_AUTH_SECRET_KEY
-            - name: spring.security.oauth2.provider.kakao.user-info-uri
+            - name: KAKAO_REDIRECT_ID
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
                   key: MY_AUTH_SECRET_KEY
-            - name: spring.security.oauth2.provider.kakao.user-name-attribute
+            - name: KAKAO_SCOPE
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
                   key: MY_AUTH_SECRET_KEY
-            - name: spring.data.redis.host
+            - name: KAKAO_AUTH_URI
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
                   key: MY_AUTH_SECRET_KEY
-            - name: spring.data.redis.port
+            - name: KAKAO_TOKEN_URI
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
                   key: MY_AUTH_SECRET_KEY
-            - name: spring.jpa.hibernate.ddl-auto
+            - name: KAKAO_ATTRIBUTE
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
                   key: MY_AUTH_SECRET_KEY
-            - name: spring.server.port
+            - name: DDL_TYPE
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-config
+                  key: MY_AUTH_SECRET_KEY              
+            - name: REDIS_PORT
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config
                   key: MY_AUTH_SECRET_KEY
-            - name: jwt.secret
+            - name: REDIS_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-config
+                  key: MY_AUTH_SECRET_KEY
+            - name: AUTH_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-config
+                  key: MY_AUTH_SECRET_KEY
+            - name: JWT_SECRET
               valueFrom:
                 secretKeyRef:
                   name: spring-app-config

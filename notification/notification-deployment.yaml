@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: notification-server-container
-        image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/notification:5
+        image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/notification:6
         ports:
         - containerPort: 8184
         env:
@@ -41,11 +41,6 @@ spec:
               secretKeyRef:
                 name: noti-app-config
                 key: MY_NOTI_SECRET_KEY
-          - name: DB_PORT
-            valueFrom:
-              secretKeyRef:
-                name: noti-app-config
-                key: MY_NOTI_SECRET_KEY
           - name: DB_PASS
             valueFrom:
               secretKeyRef:
@@ -62,7 +57,31 @@ spec:
                 name: noti-app-config
                 key: MY_NOTI_SECRET_KEY
           - name: NOTI_PORT
-            value: "8184"
+            valueFrom:
+              secretKeyRef:
+                name: noti-app-config
+                key: MY_NOTI_SECRET_KEY
+          - name: DDL_TYPE
+            valueFrom:
+              secretKeyRef:
+                name: noti-app-config
+                key: MY_NOTI_SECRET_KEY               
+          - name: PROJECT_ID
+            valueFrom:
+              secretKeyRef:
+                name: noti-app-config
+                key: MY_NOTI_SECRET_KEY
+          - name: PRICE_SUBSCRIPTION_ID
+            valueFrom:
+              secretKeyRef:
+                name: noti-app-config
+                key: MY_NOTI_SECRET_KEY
+          - name: WEATHER_SUBSCRIPTION_ID
+            valueFrom:
+              secretKeyRef:
+                name: noti-app-config
+                key: MY_NOTI_SECRET_KEY
+
 ---
 apiVersion: v1
 kind: Service
