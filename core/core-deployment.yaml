@@ -98,6 +98,8 @@ spec:
             secretKeyRef:
               name: core-app-config
               key: MY_CORE_SECRET_KEY
+        - name: CORE_PORT
+          value: "8181"
 
 
 ---
