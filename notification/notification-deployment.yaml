@@ -57,10 +57,7 @@ spec:
                 name: noti-app-config
                 key: MY_NOTI_SECRET_KEY
           - name: NOTI_PORT
-            valueFrom:
-              secretKeyRef:
-                name: noti-app-config
-                key: MY_NOTI_SECRET_KEY
+            value: "8184"
           - name: DDL_TYPE
             valueFrom:
               secretKeyRef:
