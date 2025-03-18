@@ -80,6 +80,11 @@ spec:
                 secretKeyRef:
                   name: spring-app-config
                   key: KAKAO_REDIRECT_ID
+            - name: KAKAO_AUTH_TYPE
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-config
+                  key: KAKAO_AUTH_TYPE
             - name: KAKAO_SCOPE
               valueFrom:
                 secretKeyRef:
