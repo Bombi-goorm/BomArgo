@@ -16,7 +16,7 @@ spec:
         kubernetes.io/arch: amd64
       containers:
         - name: auth-server
-          image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/auth:14
+          image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/auth:15
           ports:
             - containerPort: 8180
           env:
@@ -100,6 +100,16 @@ spec:
                 secretKeyRef:
                   name: spring-app-config
                   key: KAKAO_ATTRIBUTE
+            - name: KAKAO_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-config
+                  key: KAKAO_CLIENT_SECRET
+            - name: KAKAO_USER_INFO_URI
+              valueFrom:
+                secretKeyRef:
+                  name: spring-app-config
+                  key: KAKAO_USER_INFO_URI
             - name: DDL_TYPE
               valueFrom:
                 secretKeyRef:
