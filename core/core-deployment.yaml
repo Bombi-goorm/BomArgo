@@ -17,7 +17,7 @@ spec:
     spec:
       nodeSelector:
         kubernetes.io/arch: amd64
-        node-group: app
+        intent: control-apps
       containers:
       - name: core-server-container
         image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/core:10
