@@ -12,6 +12,8 @@ spec:
       labels:
         app: llm-server
     spec:
+      nodeSelector:
+        node-group: app
       containers:
       - name: llm-server
         image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/llm:48
