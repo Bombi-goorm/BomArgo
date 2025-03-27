@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: front-server-container
-        image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/front:44
+        image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/front:45
         ports:
         - containerPort: 8185
 ---
