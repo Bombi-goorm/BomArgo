@@ -30,6 +30,7 @@ spec:
             httpGet:
               path: "/auth/health"
               port: 8180
+              host: auth-server-service
             initialDelaySeconds: 15
             periodSeconds: 5
             failureThreshold: 3
@@ -39,6 +40,7 @@ spec:
             httpGet:
               path: "/auth/health"
               port: 8180
+              host: auth-server-service
             initialDelaySeconds: 30
             periodSeconds: 10
             failureThreshold: 5
