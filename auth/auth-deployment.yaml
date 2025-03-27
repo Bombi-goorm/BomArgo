@@ -14,7 +14,6 @@ spec:
     spec:
       nodeSelector:
         kubernetes.io/arch: amd64
-        intent: control-apps
       containers:
         - name: auth-server
           image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/auth:46
@@ -22,11 +21,28 @@ spec:
             - containerPort: 8180
           resources:
             requests:
-              cpu: "500m"      
+              cpu: "100m"      
               memory: "256Mi"
             limits:
-              cpu: "750m"    
-              memory: "1Gi" 
+              cpu: "500m"    
+              memory: "1Gi"  
+          readinessProbe:
+            httpGet:
+              path: "/auth/health"
+              port: 8180
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            failureThreshold: 3
+          
+          # ✅ Liveness Probe 추가
+          livenessProbe:
+            httpGet:
+              path: "/auth/health"
+              port: 8180
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 5
+            
           env:
             - name: DB_HOST
               valueFrom:
