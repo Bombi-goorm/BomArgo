@@ -19,6 +19,13 @@ spec:
         image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/llm:103
         ports:
         - containerPort: 8182
+        resources:
+            requests:
+              cpu: "300m"      
+              memory: "512Mi"
+            limits:
+              cpu: "700m"    
+              memory: "1Gi" 
         env:          
         - name: DATABASE_HOST
           valueFrom:
