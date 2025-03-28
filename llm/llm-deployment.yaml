@@ -16,7 +16,7 @@ spec:
         intent: control-apps
       containers:
       - name: llm-server
-        image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/llm:116
+        image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/llm:117
         ports:
         - containerPort: 8182
         resources:
