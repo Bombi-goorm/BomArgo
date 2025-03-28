@@ -20,7 +20,7 @@ spec:
         intent: control-apps
       containers:
       - name: core-server-container
-        image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/core:70
+        image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/core:71
         ports:
         - containerPort: 8181
         resources:
