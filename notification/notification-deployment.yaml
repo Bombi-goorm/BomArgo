@@ -22,6 +22,13 @@ spec:
         image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/notification:59
         ports:
         - containerPort: 8184
+        resources:
+            requests:
+              cpu: "300m"      
+              memory: "512Mi"
+            limits:
+              cpu: "700m"    
+              memory: "1Gi" 
         env:
           - name: DB_HOST
             valueFrom:
