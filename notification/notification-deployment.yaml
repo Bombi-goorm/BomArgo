@@ -19,7 +19,7 @@ spec:
         intent: control-apps
       containers:
       - name: notification-server-container
-        image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/notification:63
+        image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/notification:64
         ports:
         - containerPort: 8184
         resources:
