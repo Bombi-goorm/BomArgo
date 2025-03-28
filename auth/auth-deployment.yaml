@@ -24,8 +24,8 @@ spec:
               cpu: "300m"      
               memory: "512Mi"
             limits:
-              cpu: "1000m"    
-              memory: "2Gi"  
+              cpu: "700m"    
+              memory: "1Gi"  
             
           env:
             - name: DB_HOST
