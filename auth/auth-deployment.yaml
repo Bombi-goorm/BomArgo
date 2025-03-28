@@ -16,7 +16,7 @@ spec:
         kubernetes.io/arch: amd64
       containers:
         - name: auth-server
-          image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/auth:69
+          image: 575108933149.dkr.ecr.ap-northeast-2.amazonaws.com/bombi/auth:70
           ports:
             - containerPort: 8180
           resources:
